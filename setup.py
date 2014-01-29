@@ -7,7 +7,7 @@ setup(
     author='Mark Vartanyan',
     author_email='kolypto@gmail.com',
 
-    url='https://github.com/kolypto/py-smsframework',
+    url='https://github.com/kolypto/py-smsframework-clickatell',
     license='MIT',
     description="SMS framework: Clickatell provider",
     long_description=open('README.rst').read(),
@@ -17,7 +17,13 @@ setup(
     scripts=[],
 
     install_requires=[
+        'smsframework >= 0.0.1',
     ],
+    extras_require={
+        'receiver': [  # sms receiving
+            'flask >= 0.10',
+        ]
+    },
     include_package_data=True,
 
     platforms='any',
