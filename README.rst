@@ -9,6 +9,22 @@ SMSframework Clickatell Provider
 You need a "Developers' Central" Clickatell account with an HTTP API set
 up. From the API, you need: api\_id, username, password.
 
+Installation
+============
+
+Install from pypi:
+
+::
+
+    $ pip install smsframework_clickatell
+
+To receive SMS messages, you need to ensure that `Flask
+microframework <http://flask.pocoo.org>`__ is also installed:
+
+::
+
+    $ pip install smsframework_clickatell[receiver]
+
 Initialization
 ==============
 
@@ -28,9 +44,11 @@ Initialization
 Config
 ------
 
+Source: /smsframework\_clickatell/provider.py
+
 -  ``api_id: str``: API ID to use
 -  ``user: str``: Account username
--  ``pass: str``: Account password
+-  ``password: str``: Account password
 -  ``https: bool``: Use HTTPS for outgoing messages? Default: ``False``
 
 Sending Parameters
@@ -60,16 +78,16 @@ IncomingMessage.meta
 --------------------
 
 -  ``api_id: str``: API id
--  ``charset: str``: Message character set (when applicable)
--  ``udh: str``: Header Data (when applicable)
+-  ``charset: str``: Message character set (when applicable, else -
+   None)
+-  ``udh: str``: Header Data (when applicable, else - None)
 
 MessageStatus.meta
 ------------------
 
 -  ``status: int``: Message status code
--  ``reference: str``: Reference string
 -  ``api_id: str``: API id
--  ``charge: int``: Charged funds
+-  ``charge: float``: Charged funds
 
 Public API
 ==========
@@ -86,6 +104,8 @@ Returns the credist left on the account:
 
 Receivers
 =========
+
+Source: /smsframework\_clickatell/receiver.py
 
 Message Receiver: /im
 ---------------------
