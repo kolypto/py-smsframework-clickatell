@@ -45,11 +45,11 @@ class ClickatellProvider(IProvider):
         try:
             message.msgid = self.api.sendmsg(message.dst, message.body, **params)
             return message
-        except HTTPError, e:
+        except HTTPError as e:
             raise exc.MessageSendError(e.message)
-        except URLError, e:
+        except URLError as e:
             raise exc.ConnectionError(e.message)
-        except ClickatellApiError, e:
+        except ClickatellApiError as e:
             raise error.ClickatellProviderError(e.code, e.message)  # will mutate into the necessary error object
 
     def make_receiver_blueprint(self):
@@ -73,11 +73,11 @@ class ClickatellProvider(IProvider):
         """
         try:
             return self.api.api_request(method, **params)
-        except HTTPError, e:
+        except HTTPError as e:
             raise exc.MessageSendError(e.message)
-        except URLError, e:
+        except URLError as e:
             raise exc.ConnectionError(e.message)
-        except ClickatellApiError, e:
+        except ClickatellApiError as e:
             raise error.ClickatellProviderError(e.code, e.message)  # will mutate into the necessary error object
 
     def getbalance(self):
@@ -88,11 +88,11 @@ class ClickatellProvider(IProvider):
         """
         try:
             return self.api.getbalance()
-        except HTTPError, e:
+        except HTTPError as e:
             raise exc.MessageSendError(e.message)
-        except URLError, e:
+        except URLError as e:
             raise exc.ConnectionError(e.message)
-        except ClickatellApiError, e:
+        except ClickatellApiError as e:
             raise error.ClickatellProviderError(e.code, e.message)
 
     #endregion
