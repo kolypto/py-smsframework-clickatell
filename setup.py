@@ -24,6 +24,10 @@ setup(
             'flask >= 0.10',
         ]
     },
+    tests_require=[
+        'nose',
+        'flask'
+    ],
     include_package_data=True,
 
     platforms='any',
