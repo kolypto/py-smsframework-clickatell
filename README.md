@@ -39,10 +39,10 @@ from smsframework import Gateway
 from smsframework_clickatell import ClickatellProvider
 
 gateway = Gateway()
-gateway.add_prodiver('clickatell', ClickatellProvider,
+gateway.add_provider('clickatell', ClickatellProvider,
     api_id=1,
     user='kolypto',
-    pass='123',
+    password='123',
     https=False
 )
 ```
