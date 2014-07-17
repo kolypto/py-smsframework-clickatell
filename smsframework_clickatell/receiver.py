@@ -17,7 +17,7 @@ def _merge_request(request):
     return data
 
 
-@bp.route('/im')
+@bp.route('/im', methods=['POST'])
 def im():
     """ Incoming message handler
 
@@ -68,7 +68,7 @@ def im():
     return 'OK'  # Clickatell protocol is well-structured, yes
 
 
-@bp.route('/status')
+@bp.route('/status', methods=['POST'])
 def status():
     """ Incoming status report
 
