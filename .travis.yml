@@ -6,4 +6,5 @@ python:
 install:
   - "pip install -e '.[receiver]'"
 
-script: nosetests
+script: ./setup.py test
+

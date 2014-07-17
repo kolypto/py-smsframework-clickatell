@@ -1,9 +1,11 @@
+#! /usr/bin/env python
+
 from setuptools import setup
 
 setup(
     # http://pythonhosted.org/setuptools/setuptools.html
     name='smsframework-clickatell',
-    version='0.0.2-0',
+    version='0.0.2-1',
     author='Mark Vartanyan',
     author_email='kolypto@gmail.com',
 
@@ -28,6 +30,7 @@ setup(
         'nose',
         'flask'
     ],
+    test_suite='nose.collector',
     include_package_data=True,
 
     platforms='any',
