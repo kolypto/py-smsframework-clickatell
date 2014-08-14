@@ -4,7 +4,7 @@ python:
 #  - "3.3"
 
 install:
-  - "pip install -e '.[receiver]'"
+  - "pip install -e '.[receiver,_dev]'"
 
 script: ./setup.py test
 

@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     # http://pythonhosted.org/setuptools/setuptools.html
     name='smsframework-clickatell',
-    version='0.0.2-1',
+    version='0.0.2-2',
     author='Mark Vartanyan',
     author_email='kolypto@gmail.com',
 
@@ -24,12 +24,9 @@ setup(
     extras_require={
         'receiver': [  # sms receiving
             'flask >= 0.10',
-        ]
+        ],
+        '_dev': ['wheel', 'nose', 'flask'],
     },
-    tests_require=[
-        'nose',
-        'flask'
-    ],
     test_suite='nose.collector',
     include_package_data=True,
 
