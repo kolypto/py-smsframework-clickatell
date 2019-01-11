@@ -1,31 +1,31 @@
 #! /usr/bin/env python
+""" SMS framework: Clickatell provider """
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     # http://pythonhosted.org/setuptools/setuptools.html
     name='smsframework-clickatell',
-    version='0.0.2-2',
+    version='0.0.3-0',
     author='Mark Vartanyan',
     author_email='kolypto@gmail.com',
 
     url='https://github.com/kolypto/py-smsframework-clickatell',
-    license='MIT',
-    description="SMS framework: Clickatell provider",
-    long_description=open('README.rst').read(),
+    license='BSD',
+    description=__doc__,
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     keywords=['sms', 'message', 'notification', 'receive', 'send', 'clickatell'],
 
-    packages=['smsframework_clickatell'],
+    packages=find_packages(),
     scripts=[],
+    entry_points={},
 
     install_requires=[
-        'smsframework >= 0.0.1',
+        'smsframework >= 0.0.9',
     ],
     extras_require={
-        'receiver': [  # sms receiving
-            'flask >= 0.10',
-        ],
-        '_dev': ['wheel', 'nose', 'flask'],
+        'receiver': ['flask >= 0.10',],  # sms receiving
     },
     test_suite='nose.collector',
     include_package_data=True,
@@ -37,7 +37,7 @@ setup(
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Programming Language :: Python :: 2',
-        #'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3',
         'Operating System :: OS Independent'
     ],
 )

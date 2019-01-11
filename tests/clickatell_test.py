@@ -34,7 +34,7 @@ class ClickatellProviderTest(unittest.TestCase):
     def test_blueprints(self):
         """ Test blueprints """
         self.assertEqual(
-            self.gw.receiver_blueprints().keys(),
+            list(self.gw.receiver_blueprints().keys()),
             ['main']
         )
 
@@ -149,7 +149,7 @@ class ClickatellProviderTest(unittest.TestCase):
             self.assertEqual(message.msgid, '1de97e5e15f76bb1e374f1ea3d33bf65')
             self.assertEqual(message.src, '380660000000')
             self.assertEqual(message.dst, '491700000000')
-            self.assertEqual(message.body, u'Привет, жопа!')
+            self.assertEqual(message.body, u'Привет, жопа!')  # sorry :)
             self.assertEqual(message.rtime.strftime('%Y-%m-%d %H:%M:%S'), '2014-01-29 00:05:46')  # UTC
             self.assertEqual(message.meta, {'api_id': '3460000', 'charset': 'UTF-16BE', 'udh': ''})
 

@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import urllib
-import urllib2
 import re
 import math
 import binascii
+
+try: # Py3
+    from urllib.parse import urlencode
+    from urllib.request import Request, urlopen
+except ImportError: # Py2
+    from urllib import urlencode
+    from urllib2 import Request, urlopen
 
 from .const import Features
 
@@ -51,11 +56,11 @@ class ClickatellHttpApi(object):
         data = {}
         data.update(self._auth)
         data.update(params)
-        post = urllib.urlencode(data)
+        post = urlencode(data)
 
         # Request
-        req = urllib2.Request(url, post)
-        res = urllib2.urlopen(req)
+        req = Request(url, post)
+        res = urlopen(req)
         return res.read()
 
     def api_request(self, method, **params):

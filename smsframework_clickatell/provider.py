@@ -2,7 +2,12 @@ from smsframework import IProvider, exc
 from . import error
 from . import status
 from .api import ClickatellHttpApi, ClickatellApiError
-from urllib2 import URLError, HTTPError
+
+try: # Py3
+    from urllib.request import URLError, HTTPError
+except ImportError: # Py2
+    from urllib2 import URLError, HTTPError
+
 
 
 class ClickatellProvider(IProvider):
@@ -46,11 +51,11 @@ class ClickatellProvider(IProvider):
             message.msgid = self.api.sendmsg(message.dst, message.body, **params)
             return message
         except HTTPError as e:
-            raise exc.MessageSendError(e.message)
+            raise exc.MessageSendError(e.reason)
         except URLError as e:
-            raise exc.ConnectionError(e.message)
+            raise exc.ConnectionError(e.reason)
         except ClickatellApiError as e:
-            raise error.ClickatellProviderError(e.code, e.message)  # will mutate into the necessary error object
+            raise error.ClickatellProviderError(e.code, str(e))  # will mutate into the necessary error object
 
     def make_receiver_blueprint(self):
         """ Create the receiver blueprint
@@ -74,11 +79,11 @@ class ClickatellProvider(IProvider):
         try:
             return self.api.api_request(method, **params)
         except HTTPError as e:
-            raise exc.MessageSendError(e.message)
+            raise exc.MessageSendError(e.reason)
         except URLError as e:
-            raise exc.ConnectionError(e.message)
+            raise exc.ConnectionError(e)
         except ClickatellApiError as e:
-            raise error.ClickatellProviderError(e.code, e.message)  # will mutate into the necessary error object
+            raise error.ClickatellProviderError(e.code, str(e))  # will mutate into the necessary error object
 
     def getbalance(self):
         """ Query balance
@@ -89,10 +94,10 @@ class ClickatellProvider(IProvider):
         try:
             return self.api.getbalance()
         except HTTPError as e:
-            raise exc.MessageSendError(e.message)
+            raise exc.MessageSendError(str(e))
         except URLError as e:
-            raise exc.ConnectionError(e.message)
+            raise exc.ConnectionError(str(e))
         except ClickatellApiError as e:
-            raise error.ClickatellProviderError(e.code, e.message)
+            raise error.ClickatellProviderError(e.code, str(e))
 
     #endregion

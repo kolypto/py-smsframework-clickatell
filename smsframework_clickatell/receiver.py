@@ -1,3 +1,5 @@
+import sys
+
 from datetime import datetime, timedelta
 
 from flask import Blueprint
@@ -42,8 +44,11 @@ def im():
     rtime = datetime.strptime(req['timestamp'], '%Y-%m-%d %H:%M:%S')
     rtime -= timedelta(hours=2)  # Date is in GMT+0200. Alter it to UTC
 
-    # Message encoding
-    req['text'] = req['text'].decode(req['charset'])
+    # Message encoding: unicode -> real unicode
+    if sys.version_info[0] == 2:
+        req['text'] = req['text'].decode(req['charset'])  # Python 2: str -> unicode
+    else:
+        req['text'] = bytes(req['text'], 'latin-1').decode(req['charset'])  # Python 3: str -> bytes -> unicode
 
     # IncomingMessage
     message = IncomingMessage(
